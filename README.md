@@ -57,6 +57,7 @@ AETK 2.0 includes a comprehensive set of sample plugins in `samples/` demonstrat
 - **[AETK_GPUEffect](samples/Effect/AETK_GPUEffect)**: Demonstrates GPU acceleration pipelines using CUDA kernels.
 - **[AETK_TestSuite](samples/Effect/AETK_TestSuite)**: Comprehensive feature validation and parameter suite test harness for AETK.
 - **[Psychedelia](samples/Effect/Psychedelia)**: Real-time CUDA-accelerated volumetric fractal generator filter plugin.
+- **[SWARM](samples/Effect/SWARM)**: Real-time object detection filter using YOLOX via ONNX Runtime (ORT), featuring CUDA GPU acceleration, DLL delay-load isolation, and a custom interactive HUD/joystick interface.
 
 ---
 
