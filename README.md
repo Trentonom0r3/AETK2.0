@@ -1,4 +1,4 @@
-# 🌌 AETK 2.0: The Modern After Effects SDK
+# AETK 2.0: The Modern After Effects SDK
 
 [![Standard](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B20)
 [![License](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
