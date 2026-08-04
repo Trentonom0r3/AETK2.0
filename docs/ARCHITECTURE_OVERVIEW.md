@@ -71,44 +71,31 @@ When After Effects interacts with your plugin, it calls a single C entry point f
 
 ```mermaid
 sequenceDiagram
-    participant AE as After Effects Host
-    participant AETK as "AETK plugin::effect_main"
-    participant Wrapper as "aetk::effect::*_context"
+    autonumber
+    participant Host as After Effects Host
+    participant AETK as AETK Dispatcher (effect_main)
     participant User as MyCustomPlugin (User Code)
 
-    AE->>AETK: Call EffectMain(cmd, in_data, out_data, ...)
+    Host->>AETK: EffectMain(cmd, in_data, out_data, ...)
     activate AETK
-    
-    rect #f0f8ff
-        note right of AETK: Wrap raw structures into safe C++ contexts
-        AETK->>Wrapper: Construct context(in_data, out_data, ...)
-        activate Wrapper
-    end
-    
-    alt cmd == PF_Cmd_GLOBAL_SETUP
-        AETK->>User: on_global_setup(global_setup_context)
-        activate User
+
+    Note over AETK: Wrap raw C handles into type-safe context
+
+    alt Command Dispatch (cmd)
+        AETK->>+User: on_global_setup(global_setup_context)
     else cmd == PF_Cmd_PARAMS_SETUP
         AETK->>User: on_params_setup(params_setup_context)
-        activate User
     else cmd == PF_Cmd_PRE_RENDER
         AETK->>User: on_pre_render(pre_render_context)
-        activate User
     else cmd == PF_Cmd_SMART_RENDER
         AETK->>User: on_smart_render(smart_render_context)
-        activate User
     end
+
+    User-->>-AETK: Return PF_Err status
     
-    User-->>AETK: Return
-    deactivate User
-    
-    rect #fff0f5
-        note right of AETK: Destruct context, release local handles & suites
-        AETK->>Wrapper: Destruct context
-        deactivate Wrapper
-    end
-    
-    AETK-->>AE: Return PF_Err status code
+    Note over AETK: Scope Exit: Destruct context<br/>(auto-release local handles & suites)
+
+    AETK-->>Host: Return PF_Err status code
     deactivate AETK
 ```
 
