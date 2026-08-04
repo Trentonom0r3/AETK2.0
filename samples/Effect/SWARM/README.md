@@ -51,7 +51,6 @@ After Effects CC 2026/Plug-ins/SWARM/
 └── framesmith_core/                # Folder containing DLLs, presets, and HUD assets
     ├── onnxruntime_fsl_1.0.0.dll       # The renamed ONNX Runtime DLL
     ├── onnxruntime_providers_shared.dll# Shared providers DLL (if using CUDA/DirectML)
-    ├── onnxruntime_providers_cuda.dll  # CUDA provider DLL (for GPU acceleration)
     └── DirectML.dll                    # DirectML DLL (for GPU acceleration)
 ```
 
