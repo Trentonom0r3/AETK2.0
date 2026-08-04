@@ -1,0 +1,44 @@
+#ifndef AE_OS_WIN
+    #include <AE_General.r>
+#endif
+
+resource 'PiPL' (16000) {
+	{
+		Kind {
+			AEEffect
+		},
+		Name {
+			"@AETK_PIPL_NAME@"
+		},
+		Category {
+			"@AETK_PIPL_CATEGORY@"
+		},
+        CodeWin64X86 {"@AETK_PIPL_ENTRY@"},
+		AE_PiPL_Version {
+			2,
+			0
+		},
+		AE_Effect_Spec_Version {
+			13,
+			29
+		},
+		AE_Effect_Version {
+			@AETK_PIPL_VERSION@
+		},
+		AE_Effect_Info_Flags {
+			0
+		},
+		AE_Effect_Global_OutFlags {
+			@AETK_PIPL_OUT_FLAGS@
+		},
+		AE_Effect_Global_OutFlags_2 {
+			@AETK_PIPL_OUT_FLAGS2@
+		},
+		AE_Effect_Match_Name {
+			"@AETK_PIPL_MATCH_NAME@"
+		},
+		AE_Reserved_Info {
+			0
+		}
+	}
+};

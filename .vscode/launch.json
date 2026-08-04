@@ -1,0 +1,63 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch SWARM (Debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "D:/Program Files/Adobe After Effects 2025/Support Files/AfterFX.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                { "name": "AETK_LOG_LEVEL", "value": "trace" },
+                { "name": "AETK_LOG_CONSOLE", "value": "1" }
+            ],
+            "console": "internalConsole",
+            "preLaunchTask": "Build SWARM (Debug)"
+        },
+        {
+            "name": "Launch Psychadelic (Debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "D:/Program Files/Adobe After Effects 2025/Support Files/AfterFX.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                { "name": "AETK_LOG_LEVEL", "value": "info" },
+                { "name": "AETK_LOG_CONSOLE", "value": "1" }
+            ],
+            "console": "internalConsole",
+            "preLaunchTask": "Build Psychadelic (Debug)"
+        },
+        {
+            "name": "Attach Psychadelic",
+            "type": "cppvsdbg",
+            "request": "attach",
+            "processName": "AfterFX.exe"
+        },
+        {
+            "name": "Attach FramesmithStudio (Debug)",
+            "type": "cppvsdbg",
+            "request": "attach",
+            "processName": "AfterFX.exe",
+            "preLaunchTask": "Build FramesmithStudio (Debug)"
+        },
+        {
+            "name": "Launch FramesmithStudio (Debug)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "D:/Program Files/Adobe After Effects 2025/Support Files/AfterFX.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                { "name": "AETK_LOG_LEVEL", "value": "trace" },
+                { "name": "AETK_LOG_CONSOLE", "value": "1" }
+            ],
+            "console": "internalConsole",
+            "preLaunchTask": "Build FramesmithStudio (Debug)"
+        }
+    ]
+}

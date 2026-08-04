@@ -1,0 +1,29 @@
+---
+# AETK Header-Only Clang-Tidy Configuration
+# Focuses on performance, avoiding redundant logic/copies, and preventing bugs.
+
+Checks: >
+  -*,
+  performance-*,
+  bugprone-*,
+  readability-redundant-*,
+  misc-redundant-expression,
+  modernize-pass-by-value,
+  modernize-return-braced-init-list,
+  modernize-use-emplace,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-narrowing-conversions,
+  -bugprone-branch-clone,
+  -performance-no-int-to-ptr,
+  -bugprone-empty-catch,
+  -bugprone-exception-escape
+
+WarningsAsErrors: ''
+HeaderFilterRegex: '.*aetk[/\\]+.*'
+FormatStyle: none
+
+CheckOptions:
+  - key:             performance-move-const-arg.CheckTriviallyCopyableMove
+    value:           1
+  - key:             performance-inefficient-vector-operation.EnableVectorLikeClasses
+    value:           1

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psychedelia - Free After Effects Plugin</title>
+  
+  <!-- Modern Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #0a0b12;
+      --bg-card: rgba(20, 22, 34, 0.45);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.18);
+      
+      /* Vibrant HSL retro/psychedelic gradients */
+      --primary: #ff5c73;
+      --secondary: #bc3bf0;
+      --accent: #00e5a3;
+      --text-main: #f3f4f6;
+      --text-muted: #94a3b8;
+      
+      --gradient-flow: linear-gradient(135deg, #ff5c73 0%, #ff9f43 50%, #bc3bf0 100%);
+      --gradient-accent: linear-gradient(135deg, #00e5a3 0%, #00a8ff 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animated background glow circles */
+    body::before, body::after {
+      content: "";
+      position: absolute;
+      width: 45vw;
+      height: 45vw;
+      border-radius: 50%;
+      background: var(--gradient-flow);
+      filter: blur(140px);
+      opacity: 0.12;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    body::before {
+      top: -10vw;
+      left: -10vw;
+      animation: morphGlow 18s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      bottom: 10vw;
+      right: -10vw;
+      animation: morphGlow 22s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes morphGlow {
+      0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      100% { transform: translate(4vw, -4vw) scale(1.1) rotate(360deg); }
+    }
+
+    /* Container */
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Header & Navigation */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 50px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      background: var(--gradient-flow);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* Hero Banner Section */
+    .hero-banner {
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      position: relative;
+      margin-bottom: 60px;
+      background: #000000;
+    }
+
+    .hero-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-banner:hover img {
+      transform: scale(1.015);
+    }
+
+    /* Overview block */
+    .overview {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 70px auto;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    h1 span {
+      background: var(--gradient-flow);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .overview p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 35px;
+      font-weight: 300;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      background: var(--gradient-flow);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 10px 30px rgba(255, 92, 115, 0.25);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(255, 92, 115, 0.45);
+    }
+
+    /* Details Panel (Parameters & Main Video) */
+    .details-section {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 50px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 2.2rem; }
+      .details-section { padding: 25px; }
+    }
+
+    .details-text h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .details-text p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-weight: 300;
+      font-size: 0.95rem;
+    }
+
+    .feature-tag {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-weight: 400;
+      font-size: 0.95rem;
+    }
+
+    .feature-tag-badge {
+      background: var(--gradient-accent);
+      color: #000000;
+      font-weight: bold;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .feature-tag-text strong {
+      color: #ffffff;
+    }
+
+    .gif-container {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      background: #000000;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .gif-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Action Showcases (Small Gifs Grid) */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 70px;
+    }
+
+    @media (max-width: 900px) {
+      .showcase-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .showcase-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .showcase-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 20px;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .showcase-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .showcase-gif {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: #000000;
+      margin-bottom: 16px;
+    }
+
+    .showcase-gif img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .showcase-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .showcase-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* Footer & Installation */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 50px;
+      margin-top: 80px;
+      text-align: center;
+    }
+
+    .install-box {
+      max-width: 700px;
+      margin: 0 auto 40px auto;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 30px;
+    }
+
+    .install-box h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .install-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .step-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .step-badge {
+      background: var(--gradient-flow);
+      color: #ffffff;
+      font-weight: 800;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(255, 92, 115, 0.3);
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-content h5 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .step-content p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .step-content a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--primary);
+      display: inline-block;
+      margin-top: 6px;
+    }
+
+    .step-content a:hover {
+      color: #ffffff;
+      border-bottom-color: #ffffff;
+    }
+
+    .code-box {
+      font-family: 'Courier New', monospace;
+      background: #000000;
+      color: #ff9f43;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      margin-top: 8px;
+      word-break: break-all;
+      font-weight: 600;
+    }
+
+    .code-box.success {
+      color: var(--accent);
+    }
+
+    .copyright {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Navigation Bar -->
+    <header>
+      <div class="logo"><span>Framesmith Labs</span> // PSYCHEDELIA</div>
+      <div class="badge">FREE PLUGIN</div>
+    </header>
+
+    <!-- Main Title & Brief Overview -->
+    <section class="overview">
+      <h1>Bring the 70s Groovy Aesthetic to <span>After Effects</span></h1>
+      <p>
+        Psychedelia is a fast, GPU-accelerated plugin designed to generate retro fluid noise patterns, organic flower power arrays, and volumetric iridescent soap bubbles. Instantly morph backgrounds, leak analog-style colors, and map dynamic distortions directly to text and vector layers.
+      </p>
+      <a href="https://aescripts.com" class="cta-btn">Download Free on aescripts</a>
+    </section>
+
+    <!-- Main Banner GIF -->
+    <section class="hero-banner">
+      <img src="media/banner.gif" alt="Psychedelia Title Animation" onerror="this.src='https://placehold.co/1000x562/11131c/f3f4f6?text=Main+Banner+GIF'">
+    </section>
+
+    <!-- Details Section (Parameters and Visual Guide) -->
+    <section class="details-section">
+      <div class="details-grid">
+        <div class="details-text">
+          <h2>Fully Automated & Highly Articulate</h2>
+          <p>
+            Create customizable cellular structures, fluid light projections, and volumetric 3D soap bubbles with organic, noise-based warp maps. Adjust detail scale, grid density, and palette blends to design anything from single centerpiece elements to complex tile networks.
+          </p>
+          
+          <div class="feature-tag">
+            <div class="feature-tag-badge">✓</div>
+            <div class="feature-tag-text"><strong>Triple Modes:</strong> Psychedelic Fold, Groovy Flower, & Soap Bubble</div>
+          </div>
+          <div class="feature-tag">
+            <div class="feature-tag-badge">✓</div>
+            <div class="feature-tag-text"><strong>Organic FBM Distortions:</strong> Breathing, Melting, and Flowing animations</div>
+          </div>
+          <div class="feature-tag">
+            <div class="feature-tag-badge">✓</div>
+            <div class="feature-tag-text"><strong>Dynamic Flower Colors:</strong> Built-in hue shifting and outline blending</div>
+          </div>
+          <div class="feature-tag">
+            <div class="feature-tag-badge">✓</div>
+            <div class="feature-tag-text"><strong>Perfect Alpha Support:</strong> Clean stencil masking for text & logos</div>
+          </div>
+        </div>
+        
+        <!-- Parameter / Usage Demo GIF -->
+        <div class="gif-container">
+          <img src="media/params_demo.gif" alt="Using Psychedelia parameters" onerror="this.src='https://placehold.co/500x312/11131c/f3f4f6?text=Parameters+Demo+GIF'">
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcase GIFs -->
+    <section class="showcase-grid">
+      <div class="showcase-card">
+        <div class="showcase-gif">
+          <img src="media/demo1.gif" alt="Warping text effects demo" onerror="this.src='https://placehold.co/450x253/11131c/f3f4f6?text=Showcase+Demo+1+GIF'">
+        </div>
+        <h3>Alpha Masked Text Layers</h3>
+        <p>Ensure your letters remain perfectly anti-aliased and transparent while morphing textures shift dynamically within the boundaries of the source text.</p>
+      </div>
+
+      <div class="showcase-card">
+        <div class="showcase-gif">
+          <img src="media/demo2.gif" alt="Liquid light simulation demo" onerror="this.src='https://placehold.co/450x253/11131c/f3f4f6?text=Showcase+Demo+2+GIF'">
+        </div>
+        <h3>Liquid Light Projections</h3>
+        <p>Layer color separation shifts and perceptual motion tracers on top of text and solid layers to emulate analog video feedback loop effects.</p>
+      </div>
+
+      <div class="showcase-card">
+        <div class="showcase-gif">
+          <img src="media/demo3.gif" alt="Soap bubble simulation demo" onerror="this.src='https://placehold.co/450x253/11131c/f3f4f6?text=Soap+Bubble+Demo+GIF'">
+        </div>
+        <h3>Volumetric Soap Bubbles</h3>
+        <p>Simulate 3D iridescent spherical soap bubbles using physical color transmission, dynamic Fresnel reflection, and central volumetric vignetting.</p>
+      </div>
+    </section>
+
+    <!-- Footer Area / Quick Start -->
+    <footer>
+      <div class="install-box">
+        <h4>Quick Installation</h4>
+        <div class="install-steps">
+          
+          <!-- Step 1 -->
+          <div class="step-row">
+            <div class="step-badge">1</div>
+            <div class="step-content">
+              <h5>Official Installer (Recommended)</h5>
+              <p>The absolute easiest way to install is by using the official installer app.</p>
+              <a href="https://aescripts.com/learn/post/aescripts-aeplugins-manager-app" target="_blank">Download the aescripts + aeplugins manager app ></a>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-row">
+            <div class="step-badge">2</div>
+            <div class="step-content">
+              <h5>Manual Installation (Optional)</h5>
+              <p>Close After Effects, locate the compiled plugin file <code>Psychedelia.aex</code> inside the downloaded ZIP archive, and copy-paste it directly into your plugins directory:</p>
+              <div class="code-box">C:\Program Files\Adobe\Adobe After Effects &lt;version&gt;\Support Files\Plug-ins\</div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-row">
+            <div class="step-badge">3</div>
+            <div class="step-content">
+              <h5>Apply the Effect</h5>
+              <p>Restart After Effects, select your target layer, and apply the plugin from the top menu bar path:</p>
+              <div class="code-box success">Effect -> Framesmith Labs -> Psychedelia</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="copyright">&copy; 2026 Framesmith Labs. All rights reserved.</div>
+    </footer>
+
+  </div>
+
+</body>
+</html>

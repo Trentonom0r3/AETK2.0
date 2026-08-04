@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Psychadelic (Debug)",
+            "type": "shell",
+            "command": "cmake --build build --target AETK_GPUTest --config Debug",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Build SWARM (Debug)",
+            "type": "shell",
+            "command": "cmake --build build --target SWARM --config Debug",
+            "group": "build",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Build FramesmithStudio (Debug)",
+            "type": "shell",
+            "command": "cmake --build build --target FramesmithStudio --config RelWithDebInfo",
+            "group": "build",
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

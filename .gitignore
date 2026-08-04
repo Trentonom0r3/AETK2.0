@@ -1,0 +1,70 @@
+# Build artifacts
+build/*
+bin/
+lib/
+*.aex
+*.lib
+*.exp
+*.pdb
+*.ilk
+*.user
+*.suo
+*.sln
+*.vcxproj
+*.filters
+*.dll
+*.exe
+*.zip
+installer.iss
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+_generated/
+
+# OS/IDEs
+.DS_Store
+Thumbs.db
+.vscode/
+.vs/
+*.swp
+*.swo
+AGENTS.md
+*.code-workspace
+
+
+# Doxygen / Documentation Output
+docs/html/
+docs/latex/
+doxygen_sqlite3.db
+
+# Licensing Framework & Secret Keys (Keep Private)
+aescripts-PLUGINS-licensing-framework/
+licensing_private.hpp
+include/aetk/effect/licensing_private.hpp
+
+
+# Private / Proprietary Commercial Plugins (Moved to Private Suite Repo)
+samples/Effect/Splat!/
+samples/Effect/AETK_StemSplitter/
+samples/Effect/AETK_Sandbox_Effect/
+samples/AEGP/AETK_Sandbox/
+samples/AEGP/FramesmithStudio/
+
+# Test Assets & Logs & Scratch Files
+*.log
+*.tmp
+*.mp4
+*.mkv
+*.mov
+*.aep
+python_scratch/
+test_videos/
+test_debug.jsx
+test_ort.py
+config.ini
+Output/
+*.onnx
+*.pt
+

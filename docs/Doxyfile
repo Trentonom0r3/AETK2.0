@@ -1,0 +1,65 @@
+# Doxyfile for AETK 2.0
+PROJECT_NAME           = "AETK 2.0"
+PROJECT_NUMBER         = "2.0.0"
+PROJECT_BRIEF          = "Modern C++20 Wrapper for Adobe After Effects SDK"
+# Path settings
+OUTPUT_DIRECTORY       = docs
+STRIP_FROM_PATH        = .
+CREATE_SUBDIRECTORY    = YES
+OUTPUT_LANGUAGE        = English
+BRIEF_MEMBER_DESC      = YES
+REPEAT_BRIEF           = YES
+
+# Input settings
+INPUT                  = include README.md
+RECURSIVE              = YES
+EXCLUDE                = SDK
+FILE_PATTERNS          = *.hpp *.h *.md
+USE_MDFILE_AS_MAINPAGE = README.md
+
+# Build settings
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+HIDE_UNDOC_MEMBERS     = NO
+GENERATE_TODOLIST      = YES
+GENERATE_TESTLIST      = YES
+GENERATE_BUGLIST       = YES
+
+# Diagrams
+CLASS_DIAGRAMS         = NO
+HAVE_DOT               = NO
+GENERATE_LEGEND        = NO
+
+# HTML settings
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+HTML_EXTRA_STYLESHEET  = docs/theme/doxygen-awesome-css/doxygen-awesome.css
+HTML_COLORSTYLE        = LIGHT 
+GENERATE_TREEVIEW      = YES
+HTML_DYNAMIC_SECTIONS  = YES
+HTML_INDEX_NUM_ENTRIES = 100
+
+# LaTeX / PDF settings
+GENERATE_LATEX         = YES
+LATEX_OUTPUT           = latex
+LATEX_BATCHMODE        = YES
+USE_PDFLATEX           = YES
+PDF_HYPERLINKS         = YES
+COMPACT_LATEX          = YES
+
+# C++ specific
+OPTIMIZE_OUTPUT_FOR_C  = NO
+OPTIMIZE_OUTPUT_JAVA   = NO
+BUILTIN_STL_SUPPORT    = YES
+CPP_CLI_SUPPORT        = NO
+SIP_SUPPORT            = NO
+IDL_SUPPORT            = NO
+DISTRIBUTE_GROUP_DOC   = YES
+SUBGROUP_METHODS       = YES
+
+# Formatting
+TAB_SIZE               = 4
+MARKDOWN_SUPPORT       = YES
+AUTOLINK_SUPPORT       = YES

@@ -1,0 +1,26 @@
+#ifndef AE_OS_WIN
+    #include <AE_General.r>
+#endif
+
+resource 'PiPL' (16000) {
+	{
+		Kind {
+			AEGP
+		},
+		Name {
+			"@AETK_PIPL_NAME@"
+		},
+		CodeWin64X86 {"EntryPointFunc"},
+		AE_PiPL_Version {
+			2,
+			0
+		},
+		AE_Effect_Spec_Version {
+			13,
+			29
+		},
+		AE_Effect_Version {
+			@AETK_PIPL_VERSION@
+		}
+	}
+};
